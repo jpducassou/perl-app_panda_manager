@@ -27,6 +27,16 @@ template: "simple"
 #       start_tag: '<%'
 #       end_tag:   '%>'
 
+serializers:
+  json: JSON
+  yml:  YAML
+
+plugins:
+  DBIC:
+    default:
+      dsn: dbi:SQLite:dbname=panda.db
+      schema_class: App::Panda::Manager::Schema
+
 # session engine
 #
 # Simple: in-memory session store - Dancer2::Session::Simple
