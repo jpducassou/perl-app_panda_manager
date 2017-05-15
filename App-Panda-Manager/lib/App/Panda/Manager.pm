@@ -14,6 +14,7 @@ get '/' => sub {
 
 set serializer => 'JSON';
 
+# CREATE
 post '/panda' => sub {
 	send_error('no panda name', 400) unless body_parameters -> get('name');
 	my $payload = {};
@@ -28,10 +29,11 @@ post '/panda' => sub {
 	return {$panda->get_columns};
 };
 
+# RETRIEVE
 get '/panda/:name' => sub {
 	my $panda_name = params -> {'name'} or die 'No panda name given!';
 	my $panda = schema -> resultset('Pandas') -> find($panda_name);
-	send_error('Sorry, no panda here', 404) unless $panda;
+	send_error('Sorry, this is not the panda you are looking for', 404) unless $panda;
 	return {$panda->get_columns};
 };
 
@@ -40,7 +42,7 @@ put '/panda/:name' => sub {
 	my $panda = schema -> resultset('Pandas') -> find($panda_name);
 	send_error({'reason' => 'Sorry, no panda here'}, 404) unless $panda;
 
- 	$panda -> set_column('description' => body_parameters -> get('description'));
+	$panda -> set_column('description' => body_parameters -> get('description'));
 	$panda -> update();
 	return {'name' => $panda_name, 'message' => 'updated'};
 
