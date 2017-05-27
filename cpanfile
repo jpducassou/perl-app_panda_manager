@@ -1,5 +1,4 @@
 requires "Dancer2" => "0.205000";
-requires "Dancer2::Plugin::REST";
 requires "Dancer2::Plugin::DBIC";
 requires "Plack";
 requires "Plack::Middleware::Deflater";
