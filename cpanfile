@@ -2,6 +2,7 @@ requires "Dancer2" => "0.205000";
 requires "Dancer2::Plugin::DBIC";
 requires "Plack";
 requires "Plack::Middleware::Deflater";
+requires "Consul";
 
 recommends "YAML"             => "0";
 recommends "URL::Encode::XS"  => "0";
