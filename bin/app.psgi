@@ -17,7 +17,11 @@ use Consul;
 builder {
  enable 'Deflater';
 
-	my $agent = Consul -> agent;
+	my $consul = Consul -> new({
+		'host' => $ENV{'CONSUL_HOST'},
+		'port' => $ENV{'CONSUL_PORT'},
+	});
+	my $agent = $consul -> agent;
 	$agent -> service_register({
 		'name' => 'panda'
 	});
